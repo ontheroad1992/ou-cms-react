@@ -1,22 +1,27 @@
 import React, { Component } from "react";
-import { Button } from "antd";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
-const testDecorator = Cmp => {
-  return props => (
-    <div>
-      <h1>Hi!</h1>
-      <Cmp {...props} />
-    </div>
-  );
-};
-@testDecorator
+import routes from "./router";
+
 class App extends Component {
   render() {
     return (
-      <div>
-        <Button>按钮测试</Button>
-        <h1>hello world!</h1>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          {routes.map(item => {
+            return (
+              <Route
+                key={item.pathname}
+                path={item.pathname}
+                render={routeProps => {
+                  return <item.component {...routeProps}>ssss</item.component>;
+                }}
+              />
+            );
+          })}
+          <Redirect to={routes[0].childrens[0].pathname} from="/" />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

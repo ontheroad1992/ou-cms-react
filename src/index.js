@@ -2,4 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import zhCN from "antd/es/locale/zh_CN";
+import { ConfigProvider } from "antd";
+import "./assets/base.less";
+
+ReactDOM.render(
+  <ConfigProvider locale={zhCN}>
+    <App />
+  </ConfigProvider>,
+  document.getElementById("root")
+);
