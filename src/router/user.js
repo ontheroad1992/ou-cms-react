@@ -1,8 +1,8 @@
-import { Login } from "../views";
+import { UserLogin } from "../views";
 
 export default [
   {
     path: "/user/login",
-    component: Login
+    component: UserLogin
   }
 ];

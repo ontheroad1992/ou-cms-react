@@ -20,7 +20,7 @@ function initRoutes(routes) {
           path={route.path}
           render={routeProps => (
             <route.component {...routeProps} route={route}>
-              {route.childrens && initRoutes(route.childrens)}
+              {/* {route.childrens && initRoutes(route.childrens)} */}
             </route.component>
           )}
         />

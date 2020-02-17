@@ -3,7 +3,6 @@ import { Menu, Icon, Layout } from "antd";
 
 import "./BaseSider.less";
 import logo from "./logo.png";
-import { adminRoutes as routes } from "../../router";
 import SubMenu from "antd/lib/menu/SubMenu";
 
 class BaseSider extends Component {
@@ -12,8 +11,7 @@ class BaseSider extends Component {
   };
 
   render() {
-    console.log(this.props);
-    const { collapsed, location } = this.props;
+    const { collapsed, location, route } = this.props;
     return (
       <Layout.Sider
         trigger={null}
@@ -33,7 +31,7 @@ class BaseSider extends Component {
           selectedKeys={[location.path]}
           onClick={this.handleClickItem}
         >
-          {initMenu(routes)}
+          {initMenu(route.childrens)}
         </Menu>
       </Layout.Sider>
     );
@@ -45,6 +43,7 @@ class BaseSider extends Component {
  * @param {Array} routes 路由列表
  */
 function initMenu(routes) {
+  console.log("routes", routes);
   return routes.map(item => {
     if (item.isNav) {
       return initSubMenu(item);

@@ -1,16 +1,29 @@
-import { BaseLayout, UserLayout } from "../layouts";
+import { UserLayout, BaseLayout } from "../layouts";
 
 import dashboard from "./dashboard";
 import user from "./user";
+import account from "./account";
 
 export const adminRoutes = [
   {
-    path: "/dashboard",
-    icon: "dashboard",
-    name: "Dashboard",
-    isNav: true,
+    path: "/",
     component: BaseLayout,
-    childrens: dashboard
+    childrens: [
+      {
+        path: "/dashboard",
+        icon: "dashboard",
+        name: "Dashboard",
+        isNav: true,
+        childrens: dashboard
+      },
+      {
+        path: "/account",
+        icon: "user",
+        name: "账户管理",
+        isNav: true,
+        childrens: account
+      }
+    ]
   }
 ];
 
@@ -22,4 +35,4 @@ export const userRoutes = [
   }
 ];
 
-export default [...adminRoutes];
+export default [...userRoutes, ...adminRoutes];
