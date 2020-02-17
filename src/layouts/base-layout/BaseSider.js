@@ -28,7 +28,8 @@ class BaseSider extends Component {
         <Menu
           theme="dark"
           mode="inline"
-          selectedKeys={[location.path]}
+          // openKeys={["/dashboard"]}
+          selectedKeys={[location.pathname]}
           onClick={this.handleClickItem}
         >
           {initMenu(route.childrens)}
@@ -43,7 +44,6 @@ class BaseSider extends Component {
  * @param {Array} routes 路由列表
  */
 function initMenu(routes) {
-  console.log("routes", routes);
   return routes.map(item => {
     if (item.isNav) {
       return initSubMenu(item);

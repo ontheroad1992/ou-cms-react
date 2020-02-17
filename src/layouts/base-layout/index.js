@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Layout } from "antd";
 import BaseSider from "./BaseSider";
 import BaseHeader from "./BaseHeader";
-// import BaseContent from "./BaseContent";
 import security from "../../decorators/security";
 
 @security()
@@ -19,13 +18,14 @@ class BaseLayout extends Component {
 
   render() {
     const { collapsed } = this.state;
+    console.log(this.props);
     // console.log("collapsed", collapsed);
     return (
       <Layout>
         <BaseSider collapsed={collapsed} {...this.props} />
         <Layout>
           <BaseHeader collapsed={collapsed} toggle={this.toggle} />
-          {/* <BaseContent /> */}
+          <Layout.Content>{this.props.children}</Layout.Content>
         </Layout>
       </Layout>
     );
