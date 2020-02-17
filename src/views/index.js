@@ -15,3 +15,8 @@ export const Workplace = loadble({
   loader: () => import("./dashboard/Workplace"),
   loading: Spin
 });
+
+export const Login = loadble({
+  loader: () => import("./user/Login"),
+  loading: Spin
+});

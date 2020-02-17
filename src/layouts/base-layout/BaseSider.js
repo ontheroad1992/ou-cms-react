@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Menu, Icon, Layout } from "antd";
 
-import "./base-sider.less";
+import "./BaseSider.less";
 import logo from "./logo.png";
-import routes from "../../router";
+import { adminRoutes as routes } from "../../router";
 import SubMenu from "antd/lib/menu/SubMenu";
 
-export default class BaseSider extends Component {
+class BaseSider extends Component {
   handleClickItem = ({ key }) => {
     this.props.history.push(key);
   };
@@ -30,42 +30,61 @@ export default class BaseSider extends Component {
         <Menu
           theme="dark"
           mode="inline"
-          selectedKeys={[location.pathname]}
+          selectedKeys={[location.path]}
           onClick={this.handleClickItem}
         >
-          {routes.map(route => {
-            if (route.isNav) {
-              return (
-                <SubMenu
-                  key={route.pathname}
-                  title={
-                    <span>
-                      <Icon type={route.icon} />
-                      <span>{route.name}</span>
-                    </span>
-                  }
-                >
-                  {route.childrens.map(children => {
-                    return (
-                      <Menu.Item key={children.pathname}>
-                        <Icon type={children.icon} />
-                        <span>{children.name}</span>
-                      </Menu.Item>
-                    );
-                  })}
-                </SubMenu>
-              );
-            } else {
-              return (
-                <Menu.Item key={route.pathname}>
-                  <Icon type={route.icon} />
-                  <span>{route.name}</span>
-                </Menu.Item>
-              );
-            }
-          })}
+          {initMenu(routes)}
         </Menu>
       </Layout.Sider>
     );
   }
 }
+
+/**
+ * 初始化菜单列表
+ * @param {Array} routes 路由列表
+ */
+function initMenu(routes) {
+  return routes.map(item => {
+    if (item.isNav) {
+      return initSubMenu(item);
+    } else {
+      return initMenuItem(item);
+    }
+  });
+}
+
+/**
+ * 初始化子级菜单
+ * @param {Object} route 路由对象
+ */
+function initSubMenu(route) {
+  return (
+    <SubMenu
+      key={route.path}
+      title={
+        <span>
+          <Icon type={route.icon} />
+          <span>{route.name}</span>
+        </span>
+      }
+    >
+      {route.childrens && initMenu(route.childrens)}
+    </SubMenu>
+  );
+}
+
+/**
+ * 初始化子菜单选项
+ * @param {Object} route 路由对象
+ */
+function initMenuItem(route) {
+  return (
+    <Menu.Item key={route.path}>
+      <Icon type={route.icon} />
+      <span>{route.name}</span>
+    </Menu.Item>
+  );
+}
+
+export default BaseSider;
