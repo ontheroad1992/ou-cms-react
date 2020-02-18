@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { Helmet } from "react-helmet";
+import { Switch, Route } from "react-router-dom";
+import { UserLogin } from "../../views";
 
 export default class UserLayout extends Component {
   render() {
+    console.log("UserLayout", this.props);
     return (
       <Fragment>
         <Helmet>
@@ -13,7 +16,12 @@ export default class UserLayout extends Component {
           <header>
             <h1>CMS 管理系统</h1>
           </header>
-          <div className="content">{this.props.children}</div>
+          <div className="content">
+            {this.props.children}
+            {/* <Switch>
+              <Route to="/user/login" component={UserLogin}></Route>
+            </Switch> */}
+          </div>
         </section>
       </Fragment>
     );

@@ -1,45 +1,79 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import routes from "./router";
+import { ExceptionNotFound } from "./views";
 
 class App extends Component {
   render() {
-    console.log(initRoutes(routes));
-    return <BrowserRouter>{initRoutes(routes)}</BrowserRouter>;
-    // return <h1>hello world</h1>;
+    // 这里配置这样的自动导入功能，是计划完成一个菜单和路由可筛选的操作，这些都将基于角色的配置信息来
+    return <BrowserRouter>{initRoutes(routes, "/")}</BrowserRouter>;
   }
 }
 
 /** 初始化路由 */
-function initRoutes(routes) {
-  // console.log("routes", routes);
-  // console.log(routes[0].redirect, routes[0].path);
+function initRoutes(routes, parentPath) {
+  // 生成一个基于父级路径的 404 路由
+  const notFoundPath = `${
+    parentPath === "/" ? parentPath : parentPath + "/"
+  }404`;
+  // 格式化路由配置，将无 component 的导航菜单去掉
+  const foramtRoutes = routes.reduce(
+    (stack, route) => {
+      if (!route.component && route.childrens) {
+        return [...stack, ...route.childrens];
+      } else {
+        return [...stack, route];
+      }
+    },
+    [
+      {
+        path: notFoundPath,
+        component: ExceptionNotFound
+      }
+    ]
+  );
   return (
     <Switch>
-      {routes
-        .reduce((stack, route) => {
-          if (!route.component && route.childrens) {
-            return [...stack, ...route.childrens];
-          } else {
-            return [...stack, route];
-          }
-        }, [])
-        .map(route => (
-          <Route
-            key={route.path}
-            path={route.path}
-            render={routeProps => (
-              <route.component {...routeProps} route={route}>
-                {route.childrens && initRoutes(route.childrens)}
-              </route.component>
-            )}
-          />
-        ))}
-      {/* {routes[0].redirect && (
-        <Redirect to={routes[0].redirect} from={routes[0].path} exact />
-      )} */}
+      {foramtRoutes.map(route => {
+        // console.log("route", route.path, route.component);
+        if (route.redirect) {
+          return initRedirect(route);
+        } else {
+          return initRoute(route);
+        }
+      })}
+      <Redirect to={notFoundPath} />
     </Switch>
+  );
+}
+
+/** 重定向的初始化 */
+function initRedirect(route) {
+  return (
+    <Redirect
+      key={"$$" + route.path}
+      to={route.redirect}
+      from={route.path}
+      exact
+    />
+  );
+}
+
+/** 初始化单个路由 */
+function initRoute(route) {
+  return (
+    <Route
+      key={route.path}
+      path={route.path}
+      exact={route.exact}
+      strict={route.strict}
+      render={routeProps => (
+        <route.component {...routeProps} route={route}>
+          {route.childrens && initRoutes(route.childrens, route.path)}
+        </route.component>
+      )}
+    />
   );
 }
 

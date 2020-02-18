@@ -1,3 +1,10 @@
+/*
+ * @Description: 基础导航
+ * @Author: ontheroad1992
+ * @Date: 2020-02-15 17:57:35
+ * @LastEditors: ontheroad1992
+ * @LastEditTime: 2020-02-19 03:58:52
+ */
 import React, { Component } from "react";
 import { Menu, Icon, Layout } from "antd";
 
@@ -78,6 +85,7 @@ function initSubMenu(route) {
  * @param {Object} route 路由对象
  */
 function initMenuItem(route) {
+  if (!route.name && !route.icon) return;
   return (
     <Menu.Item key={route.path}>
       <Icon type={route.icon} />

@@ -35,3 +35,15 @@ export const AccountSeting = loadble({
   loading: Loading
 });
 /** end */
+
+/** exception */
+export const ExceptionNotFound = loadble({
+  loader: () => import("./exception/NotFound"),
+  loading: Loading
+});
+
+export const ExceptionForbidden = loadble({
+  loader: () => import("./exception/Forbidden"),
+  loading: Loading
+});
+/** end */
