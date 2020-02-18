@@ -36,6 +36,18 @@ export const AccountSeting = loadble({
 });
 /** end */
 
+/** setting */
+export const SettingAuthority = loadble({
+  loader: () => import("./settings/Authority"),
+  loading: Loading
+});
+
+export const SettingMenu = loadble({
+  loader: () => import("./settings/Menu"),
+  loading: Loading
+});
+/** end */
+
 /** exception */
 export const ExceptionNotFound = loadble({
   loader: () => import("./exception/NotFound"),

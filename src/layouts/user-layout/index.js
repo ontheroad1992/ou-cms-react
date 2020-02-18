@@ -1,11 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { Helmet } from "react-helmet";
-import { Switch, Route } from "react-router-dom";
-import { UserLogin } from "../../views";
 
 export default class UserLayout extends Component {
   render() {
-    console.log("UserLayout", this.props);
     return (
       <Fragment>
         <Helmet>
