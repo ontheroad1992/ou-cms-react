@@ -3,9 +3,9 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-15 17:57:35
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-19 05:35:55
+ * @LastEditTime: 2020-02-19 14:25:48
  */
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Menu, Icon, Layout } from "antd";
 
 import "./BaseSider.less";
@@ -13,73 +13,26 @@ import logo from "./logo.png";
 import SubMenu from "antd/lib/menu/SubMenu";
 
 function BaseSider({ collapsed, history, location, route }) {
-  const [openKeys, setOpenKeys] = useState(["/"]);
+  // 不知道怎么写了，如果把 openKeys 固定死的，菜单在缩进时候，侧边菜单显示会出问题
+  // 考虑路由配置中有定位的选项，就把默认值改为他
+  let currentPath = location.pathname;
+  if (location.pathname === route.path) {
+    for (let item of [...route.childrens]) {
+      if (item.redirect) currentPath = item.redirect;
+    }
+  }
+  const defaultOpenKeys = currentPath
+    .split("/")
+    .slice(0, -1)
+    .join("/");
 
   const handleClickItem = ({ key }) => {
     history.push(key);
   };
 
-  const handleSubItem = ({ key }) => {
-    const keyIndex = openKeys.indexOf(key);
-    if (keyIndex >= 0) {
-      const openKeys_ = [...openKeys];
-      openKeys_.splice(keyIndex, 1);
-      setOpenKeys(openKeys_);
-    } else {
-      setOpenKeys([...openKeys, key]);
-    }
-  };
-
-  useEffect(() => {
-    setOpenKeys([
-      location.pathname
-        .split("/")
-        .slice(0, -1)
-        .join("/")
-    ]);
-  }, [location]);
-
-  const initMenu = routes => {
-    return routes.map(item => {
-      if (item.isNav) {
-        return initSubMenu(item);
-      } else {
-        return initMenuItem(item);
-      }
-    });
-  };
-
-  const initSubMenu = route => {
-    return (
-      <SubMenu
-        key={route.path}
-        onTitleClick={handleSubItem}
-        title={
-          <span>
-            <Icon type={route.icon} />
-            <span>{route.name}</span>
-          </span>
-        }
-      >
-        {route.childrens && initMenu(route.childrens)}
-      </SubMenu>
-    );
-  };
-
-  const initMenuItem = route => {
-    if (!route.name && !route.icon) return;
-    return (
-      <Menu.Item key={route.path}>
-        <Icon type={route.icon || "smile"} />
-        <span>{route.name}</span>
-      </Menu.Item>
-    );
-  };
-
   return (
     <Layout.Sider
       trigger={null}
-      collapsible
       collapsed={collapsed}
       style={{ minHeight: "100vh" }}
     >
@@ -92,14 +45,49 @@ function BaseSider({ collapsed, history, location, route }) {
       <Menu
         theme="dark"
         mode="inline"
-        openKeys={openKeys}
-        // defaultOpenKeys={[subMenuItem]}
+        defaultOpenKeys={[defaultOpenKeys]}
         selectedKeys={[location.pathname]}
         onClick={handleClickItem}
       >
         {initMenu(route.childrens)}
       </Menu>
     </Layout.Sider>
+  );
+}
+
+function initMenu(routes) {
+  return routes.map(item => {
+    if (item.isNav) {
+      return initSubMenu(item);
+    } else {
+      return initMenuItem(item);
+    }
+  });
+}
+
+function initSubMenu(route) {
+  return (
+    <SubMenu
+      key={route.path}
+      title={
+        <span>
+          <Icon type={route.icon} />
+          <span>{route.name}</span>
+        </span>
+      }
+    >
+      {route.childrens && initMenu(route.childrens)}
+    </SubMenu>
+  );
+}
+
+function initMenuItem(route) {
+  if (!route.name && !route.icon) return;
+  return (
+    <Menu.Item key={route.path}>
+      <Icon type={route.icon || "smile"} />
+      <span>{route.name}</span>
+    </Menu.Item>
   );
 }
 
