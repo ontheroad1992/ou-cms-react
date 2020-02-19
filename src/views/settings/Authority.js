@@ -3,12 +3,13 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-19 05:20:05
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-19 05:21:10
+ * @LastEditTime: 2020-02-20 04:16:42
  */
 
 import React, { Component } from "react";
-
-export default class Authority extends Component {
+import { ContentLayout } from "@/layouts";
+@ContentLayout()
+class Authority extends Component {
   render() {
     return (
       <div>
@@ -17,3 +18,5 @@ export default class Authority extends Component {
     );
   }
 }
+
+export default Authority;

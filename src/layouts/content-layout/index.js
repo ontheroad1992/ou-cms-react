@@ -3,7 +3,7 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-19 15:17:44
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-20 04:14:37
+ * @LastEditTime: 2020-02-20 04:17:48
  */
 
 import React, { Component } from "react";
@@ -61,7 +61,6 @@ const ContentLayout = (
     }
 
     render() {
-      console.log(this.props);
       const { route } = this.props;
       const { breadcrumbes } = this.state;
       return (
