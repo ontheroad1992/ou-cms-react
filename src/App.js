@@ -5,7 +5,41 @@ import routes from "./router";
 import { ExceptionNotFound } from "./views";
 
 class App extends Component {
+  state = {
+    useAdminRoutes: []
+  };
+
+  componentDidMount() {
+    this.setState({
+      useAdminRoutes: [
+        {
+          path: "/admin/dashboard",
+          name: "Dashboard",
+          childrens: [
+            {
+              path: "/admin/dashboard/analysis",
+              name: "分析页"
+            },
+            {
+              path: "/admin/dashboard/monitor",
+              name: "监控页"
+            }
+          ]
+        }
+      ]
+    });
+  }
+
   render() {
+    // const useAdminRoutes = [...routes].map(item => {
+    //   if (item.path === "/admin") {
+    //     item.childrens = [...item.childrens].filter(route => {
+    //       return route.path === "/admin/dashboard";
+    //     });
+    //   }
+    //   return item;
+    // });
+    // console.log(useAdminRoutes);
     // 这里配置这样的自动导入功能，是计划完成一个菜单和路由可筛选的操作，这些都将基于角色的配置信息来
     return <BrowserRouter>{initRoutes(routes, "/")}</BrowserRouter>;
   }

@@ -3,7 +3,7 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-15 17:57:35
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-19 14:25:48
+ * @LastEditTime: 2020-02-19 17:30:41
  */
 import React from "react";
 import { Menu, Icon, Layout } from "antd";
@@ -72,7 +72,7 @@ function initSubMenu(route) {
       title={
         <span>
           <Icon type={route.icon} />
-          <span>{route.name}</span>
+          <span>{route.title}</span>
         </span>
       }
     >
@@ -86,7 +86,7 @@ function initMenuItem(route) {
   return (
     <Menu.Item key={route.path}>
       <Icon type={route.icon || "smile"} />
-      <span>{route.name}</span>
+      <span>{route.title}</span>
     </Menu.Item>
   );
 }
