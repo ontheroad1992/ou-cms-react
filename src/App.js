@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
-import routes from "./router";
-import { ExceptionNotFound } from "./views";
+import routes from "@/router";
+import { ExceptionNotFound } from "@/views";
 
 class App extends Component {
   state = {

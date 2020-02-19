@@ -3,9 +3,9 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-19 03:51:22
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-19 17:30:24
+ * @LastEditTime: 2020-02-20 02:27:55
  */
-import { BaseLayout } from "../layouts";
+import { BaseLayout } from "@/layouts";
 import {
   DashboardAnalysls,
   DashboardMonitor,
@@ -14,11 +14,12 @@ import {
   AccountSeting,
   SettingAuthority,
   SettingMenu
-} from "../views";
+} from "@/views";
 
 export default {
   path: "/admin",
-  name: "后台管理",
+  name: "admin",
+  title: "后台系统",
   component: BaseLayout,
   strict: false,
   exact: false,
@@ -69,26 +70,27 @@ export default {
         },
         {
           path: "/admin/account/setting",
+          name: "setting",
           title: "个人设置",
           component: AccountSeting
         }
       ]
     },
     {
-      path: "/admin/setting",
+      path: "/admin/settings",
       icon: "setting",
-      name: "setting",
+      name: "settings",
       title: "系统设置",
       isNav: true,
       childrens: [
         {
-          path: "/admin/setting/authority",
+          path: "/admin/settings/authority",
           name: "authority",
           title: "权限管理",
           component: SettingAuthority
         },
         {
-          path: "/admin/setting/menu",
+          path: "/admin/settings/menu",
           name: "menu",
           title: "菜单管理",
           component: SettingMenu

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Layout } from "antd";
 import BaseSider from "./BaseSider";
 import BaseHeader from "./BaseHeader";
-import security from "../../decorators/security";
+import security from "@/plugins/security";
 
 @security()
 class BaseLayout extends Component {
