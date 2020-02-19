@@ -3,7 +3,7 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-19 15:17:44
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-20 02:25:37
+ * @LastEditTime: 2020-02-20 04:14:37
  */
 
 import React, { Component } from "react";
@@ -11,21 +11,33 @@ import { Breadcrumb } from "antd";
 import "./ContentLayout.less";
 import { tileRoutes } from "@/router";
 
-const ContentLayout = (props = { contentStyle: {}, title: {} }) => Cmp => {
+const ContentLayout = (
+  props = { content: {}, title: {}, cmp: null }
+) => Cmp => {
   // 默认 content 样式
-  const defaultStyle = {
-    margin: "16px",
-    backgroundColor: "#fff",
-    height: "100%",
-    ...props.contentStyle
+  const defaultContent = {
+    style: {
+      margin: "16px",
+      backgroundColor: "#fff",
+      height: "100%"
+    },
+    ...props.content
   };
-  console.log(defaultStyle);
 
+  // 默认的标题样式
   const defaultTitle = {
     open: true,
     style: {},
     ...props.title
   };
+
+  // 判断额外的组件是 class 还是 function
+  const propsCmp = props.cmp;
+  const PropsCmp = !propsCmp
+    ? false
+    : propsCmp.$$typeof
+    ? propsCmp.type
+    : propsCmp;
 
   return class extends Component {
     state = {
@@ -55,14 +67,20 @@ const ContentLayout = (props = { contentStyle: {}, title: {} }) => Cmp => {
       return (
         <div style={{ height: "100%" }}>
           <div className="content-layout-header">
+            {/* 面包屑导航 */}
             <Breadcrumb>
               {breadcrumbes.map(item => (
                 <Breadcrumb.Item key={item.name}>{item.title}</Breadcrumb.Item>
               ))}
             </Breadcrumb>
-            <h3 className="title">{route.title}</h3>
+            {/* 页面标题 */}
+            {defaultTitle.open && <h3 className="title">{route.title}</h3>}
+            {/* 额外的组件 */}
+            <div className="content-layout-header-content">
+              {PropsCmp && <PropsCmp />}
+            </div>
           </div>
-          <div style={defaultStyle}>
+          <div style={defaultContent.style}>
             <Cmp {...this.props}></Cmp>
           </div>
         </div>

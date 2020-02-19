@@ -13,8 +13,8 @@ export default class BaseHeader extends Component {
           onClick={toggle}
           style={{
             fontSize: "24px",
-            padding: "0 16px",
-            verticalAlign: "middle"
+            verticalAlign: "middle",
+            padding: "0 16px"
           }}
         />
       </Layout.Header>

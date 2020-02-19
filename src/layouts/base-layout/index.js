@@ -18,7 +18,6 @@ class BaseLayout extends Component {
 
   render() {
     const { collapsed } = this.state;
-    // console.log("collapsed", collapsed);
     return (
       <Layout>
         <BaseSider collapsed={collapsed} {...this.props} />

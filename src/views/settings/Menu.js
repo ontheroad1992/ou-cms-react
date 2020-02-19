@@ -3,10 +3,10 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-19 05:18:45
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-19 17:11:20
+ * @LastEditTime: 2020-02-20 04:15:04
  */
 import React, { Component } from "react";
-import { ContentLayout } from "../../layouts";
+import { ContentLayout } from "@/layouts";
 
 @ContentLayout()
 class Menu extends Component {
