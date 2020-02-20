@@ -1,16 +1,15 @@
 /*
- * @Description: 页面加载等待
+ * @Description: 全凭加载
  * @Author: ontheroad1992
- * @Date: 2020-02-20 04:23:34
+ * @Date: 2020-02-20 13:00:19
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-20 12:59:53
+ * @LastEditTime: 2020-02-20 13:04:32
  */
 
 import React, { Component } from "react";
-import "./loading.less";
 import { Spin } from "antd";
 
-export default class Loading extends Component {
+export default class FullLoad extends Component {
   render() {
     return (
       <div
@@ -18,10 +17,10 @@ export default class Loading extends Component {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100%"
+          height: "100vh"
         }}
       >
-        <Spin size="large"></Spin>
+        <Spin size="large" />
       </div>
     );
   }

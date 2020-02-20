@@ -3,7 +3,7 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-19 15:17:44
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-20 04:17:48
+ * @LastEditTime: 2020-02-20 13:31:04
  */
 
 import React, { Component } from "react";
@@ -64,7 +64,7 @@ const ContentLayout = (
       const { route } = this.props;
       const { breadcrumbes } = this.state;
       return (
-        <div style={{ height: "100%" }}>
+        <div className="content-layout">
           <div className="content-layout-header">
             {/* 面包屑导航 */}
             <Breadcrumb>
@@ -73,13 +73,15 @@ const ContentLayout = (
               ))}
             </Breadcrumb>
             {/* 页面标题 */}
-            {defaultTitle.open && <h3 className="title">{route.title}</h3>}
+            {defaultTitle.open && (
+              <h3 className="header-title">{route.title}</h3>
+            )}
             {/* 额外的组件 */}
             <div className="content-layout-header-content">
               {PropsCmp && <PropsCmp />}
             </div>
           </div>
-          <div style={defaultContent.style}>
+          <div style={defaultContent.style} className="content-layout-content">
             <Cmp {...this.props}></Cmp>
           </div>
         </div>
