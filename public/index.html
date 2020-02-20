@@ -175,12 +175,30 @@
           transform: rotate(405deg);
         }
       }
+      .title {
+        display: inline-block;
+      }
+      .title-in {
+          animation: fade-in;
+          animation-duration: 1s;
+      }
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
     </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="welcome">
-      <h1>Welcome!</h1>
+      <h1 class="title title-in">Welcome!</h1>
       <div class="page-loading-warp">
         <div class="ant-spin ant-spin-lg ant-spin-spinning">
           <span class="ant-spin-dot ant-spin-dot-spin">
@@ -205,7 +223,9 @@
     -->
   </body>
   <script>
-    document.getElementById('welcome').remove()
+    var welcome = document.getElementById('welcome')
+    welcome.remove()
+    // console.log(welcomeTitle)
   </script>
 
 </html>
