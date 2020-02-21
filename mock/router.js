@@ -3,14 +3,16 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-21 17:38:36
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-21 20:45:55
+ * @LastEditTime: 2020-02-21 21:42:59
  */
 const Router = require("koa-router");
 const Mock = require("mockjs");
 const path = require("path");
 const fs = require("fs");
 
-const router = new Router();
+const router = new Router({
+  prefix: "/api"
+});
 
 // 获取路由文件
 const routePath = path.resolve(__dirname, "./db");

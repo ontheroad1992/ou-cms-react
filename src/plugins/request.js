@@ -3,12 +3,12 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-21 19:30:20
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-21 20:16:42
+ * @LastEditTime: 2020-02-21 21:38:22
  */
 const axios = require("axios");
 
 const IS_DEV = process.env.NODE_ENV === "development";
-const baseURL = IS_DEV ? "/" : "";
+const baseURL = IS_DEV ? "/api" : "";
 // 配置文件
 const config = {
   baseURL,

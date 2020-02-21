@@ -7,6 +7,11 @@ import "@/assets/base.less";
 
 import loadble from "react-loadable";
 import { FullLoad } from "./components";
+import { getSettingMenus } from "./server/setting";
+(async () => {
+  const res = await getSettingMenus();
+  console.log(res);
+})();
 
 const App = loadble({
   loader: () => import("./App"),
