@@ -8,6 +8,7 @@ import "@/assets/base.less";
 
 import loadble from "react-loadable";
 import { FullLoad } from "./components";
+import "../mock";
 
 const App = loadble({
   loader: () => import("./App"),
