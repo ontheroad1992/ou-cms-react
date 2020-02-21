@@ -3,7 +3,7 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-21 17:43:47
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-21 19:16:25
+ * @LastEditTime: 2020-02-21 20:45:14
  */
 
 module.exports = {
@@ -19,6 +19,7 @@ module.exports = {
         // 属性 id 是一个自增数，起始值为 1，每次增 1
         "id|+1": 1
       }
-    ]
+    ],
+    test: "test"
   }
 };

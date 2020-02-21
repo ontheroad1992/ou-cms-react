@@ -6,7 +6,11 @@ const {
   addLessLoader,
   addWebpackAlias
 } = require("customize-cra");
+const { exec } = require("child_process");
 const theme = require("./theme");
+
+// 新增线程启动 mock 并使用 nodemon 启动，实时监听改动
+exec(`nodemon ${process.cwd()}/mock/index.js`);
 
 module.exports = override(
   addDecoratorsLegacy(),
