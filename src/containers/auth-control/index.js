@@ -3,14 +3,14 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-17 15:52:31
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-17 19:20:59
+ * @LastEditTime: 2020-02-22 14:40:51
  */
 
 import React, { Component } from "react";
 // import { stringify } from "querystring";
 import { Spin } from "antd";
 
-const security = props => Cmp => {
+const authControl = props => Cmp => {
   class SecurityLayout extends Component {
     state = {
       isReady: false,
@@ -44,4 +44,4 @@ const security = props => Cmp => {
   return SecurityLayout;
 };
 
-export default security;
+export default authControl;

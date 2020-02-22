@@ -3,7 +3,7 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-21 19:30:20
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-21 21:38:22
+ * @LastEditTime: 2020-02-22 16:48:03
  */
 const axios = require("axios");
 
@@ -70,7 +70,7 @@ _axios.interceptors.response.use(
   async res => {
     // 如果请求的状态值为 2 系列，可直接返回参数
     if (res.status.toString().charAt(0) === "2") {
-      return res.data.data; // 直接返回 data 数据
+      return res.data; // 直接返回 data 数据
     }
     // 如果不是，则证明请求的接口，业务错误或者其他
     return new Promise(async (resolve, reject) => {

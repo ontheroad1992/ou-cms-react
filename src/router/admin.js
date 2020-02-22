@@ -3,7 +3,7 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-19 03:51:22
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-20 02:27:55
+ * @LastEditTime: 2020-02-21 22:07:26
  */
 import { BaseLayout } from "@/layouts";
 import {
@@ -13,7 +13,7 @@ import {
   AccountCenter,
   AccountSeting,
   SettingAuthority,
-  SettingMenu
+  SettingsMenu
 } from "@/views";
 
 export default {
@@ -93,7 +93,7 @@ export default {
           path: "/admin/settings/menu",
           name: "menu",
           title: "菜单管理",
-          component: SettingMenu
+          component: SettingsMenu
         }
       ]
     }

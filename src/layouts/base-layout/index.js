@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Layout } from "antd";
 import BaseSider from "./BaseSider";
 import BaseHeader from "./BaseHeader";
-import security from "@/plugins/security";
+import { authControl } from "@/containers";
 
-@security()
+@authControl()
 class BaseLayout extends Component {
   state = {
     collapsed: false

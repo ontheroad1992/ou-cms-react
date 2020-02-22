@@ -42,8 +42,8 @@ export const SettingAuthority = loadble({
   loading: Loading
 });
 
-export const SettingMenu = loadble({
-  loader: () => import("./settings/Menu"),
+export const SettingsMenu = loadble({
+  loader: () => import("./settings/SettingsMenu"),
   loading: Loading
 });
 /** end */

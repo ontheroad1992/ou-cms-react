@@ -3,12 +3,13 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-19 05:20:05
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-20 04:16:42
+ * @LastEditTime: 2020-02-22 14:46:24
  */
 
 import React, { Component } from "react";
-import { ContentLayout } from "@/layouts";
-@ContentLayout()
+import { containerNav } from "@/containers";
+
+@containerNav()
 class Authority extends Component {
   render() {
     return (

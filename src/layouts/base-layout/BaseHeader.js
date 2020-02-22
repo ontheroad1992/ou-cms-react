@@ -14,7 +14,7 @@ export default class BaseHeader extends Component {
           style={{
             fontSize: "24px",
             verticalAlign: "middle",
-            padding: "0 16px"
+            padding: "0 24px"
           }}
         />
       </Layout.Header>

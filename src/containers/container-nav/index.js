@@ -3,21 +3,19 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-19 15:17:44
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-20 13:31:04
+ * @LastEditTime: 2020-02-22 14:45:53
  */
 
 import React, { Component } from "react";
 import { Breadcrumb } from "antd";
-import "./ContentLayout.less";
+import "./ContainerNav.less";
 import { tileRoutes } from "@/router";
 
-const ContentLayout = (
-  props = { content: {}, title: {}, cmp: null }
-) => Cmp => {
+const ContainerNav = (props = { content: {}, title: {}, cmp: null }) => Cmp => {
   // 默认 content 样式
   const defaultContent = {
     style: {
-      margin: "16px",
+      margin: "24px",
       backgroundColor: "#fff",
       height: "100%"
     },
@@ -64,24 +62,28 @@ const ContentLayout = (
       const { route } = this.props;
       const { breadcrumbes } = this.state;
       return (
-        <div className="content-layout">
-          <div className="content-layout-header">
+        <div className="container">
+          <div className="container-header">
             {/* 面包屑导航 */}
-            <Breadcrumb>
-              {breadcrumbes.map(item => (
-                <Breadcrumb.Item key={item.name}>{item.title}</Breadcrumb.Item>
-              ))}
-            </Breadcrumb>
+            <div className="container-header-nav">
+              <Breadcrumb>
+                {breadcrumbes.map(item => (
+                  <Breadcrumb.Item key={item.name}>
+                    {item.title}
+                  </Breadcrumb.Item>
+                ))}
+              </Breadcrumb>
+            </div>
             {/* 页面标题 */}
             {defaultTitle.open && (
-              <h3 className="header-title">{route.title}</h3>
+              <h3 className="container-header-title">{route.title}</h3>
             )}
             {/* 额外的组件 */}
-            <div className="content-layout-header-content">
+            <div className="container-header-footer">
               {PropsCmp && <PropsCmp />}
             </div>
           </div>
-          <div style={defaultContent.style} className="content-layout-content">
+          <div style={defaultContent.style} className="container-content">
             <Cmp {...this.props}></Cmp>
           </div>
         </div>
@@ -90,4 +92,4 @@ const ContentLayout = (
   };
 };
 
-export default ContentLayout;
+export default ContainerNav;
