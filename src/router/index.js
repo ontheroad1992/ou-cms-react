@@ -10,7 +10,6 @@ const routes = [
   userRoutes
 ];
 
-/** routes 转为了一维数组 */
 export const tileRoutes = (() => {
   const initList = routes => {
     return routes.reduce((accoum, item) => {

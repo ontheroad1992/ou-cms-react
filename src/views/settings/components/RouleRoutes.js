@@ -3,10 +3,11 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-22 17:04:49
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-22 17:06:50
+ * @LastEditTime: 2020-02-23 15:48:19
  */
 import React, { Fragment } from "react";
 import { Tree, Button } from "antd";
+import router from "@/router/admin";
 
 const { TreeNode } = Tree;
 

@@ -3,7 +3,7 @@
  * @Author: ontheroad1992
  * @Date: 2020-02-19 05:18:45
  * @LastEditors: ontheroad1992
- * @LastEditTime: 2020-02-22 17:05:51
+ * @LastEditTime: 2020-02-23 15:48:01
  */
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
@@ -29,8 +29,6 @@ class SettingsMenu extends PureComponent {
 
   render() {
     const { rouleGroups } = this.props;
-    console.log(this.props);
-    console.log("render");
     return (
       <div className="settings-menu-wrap">
         {/* 角色列表 */}

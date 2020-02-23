@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
-import routes from "@/router";
+import router from "@/router";
 import { ExceptionNotFound } from "@/views";
 
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
     // });
     // console.log(useAdminRoutes);
     // 这里配置这样的自动导入功能，是计划完成一个菜单和路由可筛选的操作，这些都将基于角色的配置信息来
-    return <BrowserRouter>{initRoutes(routes, "/")}</BrowserRouter>;
+    return <BrowserRouter>{initRoutes(router, "/")}</BrowserRouter>;
   }
 }
 
